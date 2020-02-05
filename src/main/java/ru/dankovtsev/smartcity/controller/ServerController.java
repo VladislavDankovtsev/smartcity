@@ -19,6 +19,7 @@ public class ServerController {
     private ServerRepository serverRepository;
     @RequestMapping(path = "/status", method = RequestMethod.GET)
     public List<Server> getstatuserver(){
+        System.out.println("check");
         List<Server> servers = serverRepository.findAll();
         return servers;
     }
