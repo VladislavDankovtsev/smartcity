@@ -5,23 +5,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name="soil_moisture")
-public class SoilMoisture {
+@Table(name="smart_home_security")
+public class SmartHomeSecurity {
     @Id
     @Column(name = "id")
     private UUID id;
     @Column(name="created_timestamp", insertable = true, updatable = false)
     private Timestamp time;
-    @Column(name="humidity")
-    private String humidity;
-    @Column(name="water")
-    private Boolean water;
+    @Column(name="id_personal")
+    private String id_personal;
+    @Column(name="door_status")
+    private String door_status;
 
-    public SoilMoisture() {
+    public SmartHomeSecurity() {
     }
 
     public UUID getId() {
@@ -40,20 +39,19 @@ public class SoilMoisture {
         this.time = time;
     }
 
-    public String getHumidity() {
-        return humidity;
+    public String getId_personal() {
+        return id_personal;
     }
 
-    public void setHumidity(String humidity) {
-        this.humidity = humidity;
+    public void setId_personal(String id_personal) {
+        this.id_personal = id_personal;
     }
 
-    public Boolean getWater() {
-        return water;
+    public String getDoor_status() {
+        return door_status;
     }
 
-    public void setWater(Boolean water) {
-        this.water = water;
+    public void setDoor_status(String door_status) {
+        this.door_status = door_status;
     }
-
 }

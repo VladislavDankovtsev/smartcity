@@ -7,5 +7,5 @@ import ru.dankovtsev.smartcity.model.Agriculture;
 import java.util.UUID;
 
 @Repository
-public interface AgriculureService extends JpaRepository<Agriculture, UUID> {
+public interface AgriculureRepository extends JpaRepository<Agriculture, UUID> {
 }

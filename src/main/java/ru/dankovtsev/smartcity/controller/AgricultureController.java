@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dankovtsev.smartcity.model.Agriculture;
-import ru.dankovtsev.smartcity.repository.AgriculureService;
+import ru.dankovtsev.smartcity.repository.AgriculureRepository;
+
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,11 +17,11 @@ import java.util.List;
 @RequestMapping("/smartcity")
 public class AgricultureController {
     @Autowired
-    private AgriculureService agriculureService;
+    private AgriculureRepository agriculureRepository;
 
     @RequestMapping(path = "/agricalture", method = RequestMethod.GET)
     public List<Agriculture> getAgricultureList(){
-        List<Agriculture> agricultureList = agriculureService.findAll();
+        List<Agriculture> agricultureList = agriculureRepository.findAll();
         return agricultureList;
     }
 
@@ -28,7 +29,7 @@ public class AgricultureController {
     public List<Agriculture> getAgricultureListHistory(@RequestParam(name="dateFrom") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dateFrom,
                                                 @RequestParam(name="dateTo") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dateTo){
 
-        List<Agriculture> agricultureList = agriculureService.findAll();
+        List<Agriculture> agricultureList = agriculureRepository.findAll();
         return agricultureList;
     }
 

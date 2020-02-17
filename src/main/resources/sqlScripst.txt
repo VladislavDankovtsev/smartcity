@@ -1,0 +1,58 @@
+CREATE TABLE smart_home(
+                id UUID NOT NULL PRIMARY KEY,
+                created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
+                elevator_id UUID NOT NULL,
+                climate_control_id UUID NOT NULL,
+                lighting_id UUID NOT NULL,
+                security_id UUID NOT NULL
+            );
+
+CREATE TABLE smart_home_climat_control(
+                id UUID NOT NULL PRIMARY KEY,
+                created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
+                temperature_in VARCHAR(10) NOT NULL,
+                temperature_out VARCHAR(10) NOT NULL
+            );
+CREATE TABLE smart_home_elevator(
+                id UUID NOT NULL PRIMARY KEY,
+                created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
+                place_arrival VARCHAR(255) NOT NULL,
+                place_department VARCHAR(255) NOT NULL
+            );
+CREATE TABLE smart_home_lighting(
+                id UUID NOT NULL PRIMARY KEY,
+                created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
+                system_status VARCHAR(255) NOT NULL,
+                signal_source VARCHAR(255) NOT NULL
+            );
+CREATE TABLE smart_home_security(
+                id UUID NOT NULL PRIMARY KEY,
+                created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
+                id_personal VARCHAR(255) NOT NULL,
+                door_status VARCHAR(255) NOT NULL
+            );
+
+INSERT INTO smart_home_security VALUES ('01014567-e89b-12d3-a456-426655440000', '2020-01-30 02:00:00', '111', 'open')
+INSERT INTO smart_home_security VALUES ('01024567-e89b-12d3-a456-426655440000', '2020-01-31 03:00:00', '222', 'close')
+
+INSERT INTO smart_home_lighting VALUES ('02014567-e89b-12d3-a456-426655440000', '2020-01-30 02:00:00', 'on', 'on');
+INSERT INTO smart_home_lighting VALUES ('02024567-e89b-12d3-a456-426655440000', '2020-01-31 03:00:00', 'on', 'on');
+
+INSERT INTO smart_home_elevator VALUES ('03014567-e89b-12d3-a456-426655440000', '2020-01-30 02:00:00', '1', '2');
+INSERT INTO smart_home_elevator VALUES ('03024567-e89b-12d3-a456-426655440000', '2020-01-31 03:00:00', '2', '1');
+
+INSERT INTO smart_home_climat_control VALUES ('04014567-e89b-12d3-a456-426655440000', '2020-01-30 02:00:00', '10', '23');
+INSERT INTO smart_home_climat_control VALUES ('04024567-e89b-12d3-a456-426655440000', '2020-01-31 03:00:00', '-2', '21');
+
+INSERT INTO smart_home VALUES ('00114567-e89b-12d3-a456-426655440000', '2020-01-30 02:00:00','03014567-e89b-12d3-a456-426655440000', '04014567-e89b-12d3-a456-426655440000', '02014567-e89b-12d3-a456-426655440000','01014567-e89b-12d3-a456-426655440000');
+INSERT INTO smart_home VALUES ('00224567-e89b-12d3-a456-426655440000', '2020-01-31 03:00:00','03014567-e89b-12d3-a456-426655440000', '04024567-e89b-12d3-a456-426655440000', '02024567-e89b-12d3-a456-426655440000','01024567-e89b-12d3-a456-426655440000');
+
+CREATE TABLE production(
+                id UUID NOT NULL PRIMARY KEY,
+                created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
+                status VARCHAR(255) NOT NULL
+            );
+
+INSERT INTO production VALUES ('20114567-e89b-12d3-a456-426655440000', '2020-02-16 02:03:00',' в ожидании');
+INSERT INTO production VALUES ('20214567-e89b-12d3-a456-426655440000', '2020-02-16 02:03:30',' в работе');
+INSERT INTO production VALUES ('20314567-e89b-12d3-a456-426655440000', '2020-02-16 02:04:00',' в ожидании');
