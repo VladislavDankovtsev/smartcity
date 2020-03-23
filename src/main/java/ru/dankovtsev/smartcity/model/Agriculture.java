@@ -2,6 +2,7 @@ package ru.dankovtsev.smartcity.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -11,7 +12,7 @@ public class Agriculture {
     @Column(name = "id")
     private UUID id;
     @Column(name="created_timestamp",insertable = true, updatable = false)
-    private Timestamp time;
+    private LocalDateTime time;
     @OneToOne
     @JoinColumn(name="soil_moisture")
     private SoilMoisture soilMoisture;
@@ -30,11 +31,11 @@ public class Agriculture {
         this.id = id;
     }
 
-    public Timestamp getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 

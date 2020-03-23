@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -14,7 +15,7 @@ public class Production  {
     @Column(name = "id")
     private UUID id;
     @Column(name="created_timestamp", insertable = true, updatable = false)
-    private Timestamp time;
+    private LocalDateTime time;
     @Column(name="status")
     private String status;
 
@@ -29,11 +30,11 @@ public class Production  {
         this.id = id;
     }
 
-    public Timestamp getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 

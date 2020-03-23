@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -14,7 +16,7 @@ public class SmartHomeElevator {
     @Column(name = "id")
     private UUID id;
     @Column(name="created_timestamp", insertable = true, updatable = false)
-    private Timestamp time;
+    private LocalDateTime time;
     @Column(name="place_arrival")
     private String place_arrival;
     @Column(name="place_department")
@@ -31,11 +33,11 @@ public class SmartHomeElevator {
         this.id = id;
     }
 
-    public Timestamp getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 

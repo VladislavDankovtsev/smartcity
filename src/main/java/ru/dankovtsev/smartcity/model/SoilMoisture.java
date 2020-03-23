@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ public class SoilMoisture {
     @Column(name = "id")
     private UUID id;
     @Column(name="created_timestamp", insertable = true, updatable = false)
-    private Timestamp time;
+    private LocalDateTime time;
     @Column(name="humidity")
     private String humidity;
     @Column(name="water")
@@ -32,11 +33,11 @@ public class SoilMoisture {
         this.id = id;
     }
 
-    public Timestamp getTime() {
+    public LocalDateTime getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(LocalDateTime time) {
         this.time = time;
     }
 
