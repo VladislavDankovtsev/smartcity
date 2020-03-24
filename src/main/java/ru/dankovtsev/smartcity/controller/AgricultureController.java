@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dankovtsev.smartcity.model.Agriculture;
 import ru.dankovtsev.smartcity.repository.AgriculureRepository;
+import ru.dankovtsev.smartcity.service.AgricultureService;
+import ru.dankovtsev.smartcity.service.iml.AgricultureServiceIml;
 
 
 import java.time.LocalDate;
@@ -18,6 +20,9 @@ import java.util.List;
 public class AgricultureController {
     @Autowired
     private AgriculureRepository agriculureRepository;
+
+    @Autowired
+    private AgricultureServiceIml agricultureServiceIml;
 
     @RequestMapping(path = "/agricalture", method = RequestMethod.GET)
     public List<Agriculture> getAgricultureList(){
@@ -31,6 +36,12 @@ public class AgricultureController {
 
         List<Agriculture> agricultureList = agriculureRepository.findAll();
         return agricultureList;
+    }
+
+    @RequestMapping(path = "/agriculture/online", method = RequestMethod.GET)
+    public Agriculture getAgricultureOnline(){
+        Agriculture agriculture = agricultureServiceIml.online();
+        return agriculture;
     }
 
 }

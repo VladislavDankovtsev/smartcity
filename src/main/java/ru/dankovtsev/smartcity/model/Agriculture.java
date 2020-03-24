@@ -54,4 +54,14 @@ public class Agriculture {
     public void setSoilMoisture(SoilMoisture soilMoisture) {
         this.soilMoisture = soilMoisture;
     }
+
+    @Override
+    public String toString() {
+        return "Agriculture{" +
+                "id=" + id +
+                ", time=" + time +
+                ", soilMoisture=" + soilMoisture +
+                ", temperatureAndHumidity=" + temperatureAndHumidity +
+                '}';
+    }
 }
