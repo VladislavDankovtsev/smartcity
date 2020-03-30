@@ -78,4 +78,16 @@ public class SmartHome {
     public void setSecurity(SmartHomeSecurity security) {
         this.security = security;
     }
+
+    @Override
+    public String toString() {
+        return "SmartHome{" +
+                "id=" + id +
+                ", time=" + time +
+                ", elevator=" + elevator +
+                ", climateControl=" + climateControl +
+                ", lighting=" + lighting +
+                ", security=" + security +
+                '}';
+    }
 }

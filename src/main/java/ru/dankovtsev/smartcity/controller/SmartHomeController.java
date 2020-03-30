@@ -10,6 +10,8 @@ import ru.dankovtsev.smartcity.model.Agriculture;
 import ru.dankovtsev.smartcity.model.Server;
 import ru.dankovtsev.smartcity.model.SmartHome;
 import ru.dankovtsev.smartcity.repository.SmartHomeRepository;
+import ru.dankovtsev.smartcity.service.SmartHomeService;
+import ru.dankovtsev.smartcity.service.iml.SmartHomeServiceIml;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,11 +22,18 @@ public class SmartHomeController {
 
     @Autowired
     private SmartHomeRepository smartHomeRepository;
+    @Autowired
+    private SmartHomeServiceIml smartHomeServiceIml;
 
     @RequestMapping(path = "/smarthome", method = RequestMethod.GET)
     public List<SmartHome> getAgricultureListHistory(){
 
         List<SmartHome> smartHomeList = smartHomeRepository.findAll();
         return smartHomeList;
+    }
+    @RequestMapping(path = "/smarthome/online", method = RequestMethod.GET)
+    public SmartHome getSmartHomeOnline(){
+        SmartHome smartHome = smartHomeServiceIml.online();
+        return smartHome;
     }
 }
