@@ -94,3 +94,11 @@ CREATE TABLE users(
                 name VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE transport(
+                id UUID NOT NULL PRIMARY KEY,
+                created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
+                status VARCHAR(255) NOT NULL
+            );
+
+
+
