@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name = "checkserver")
 public class Server {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @Column
     private String ip;
@@ -20,7 +19,8 @@ public class Server {
     public Server() {
     }
 
-    public Server(String ip, String name, String status) {
+    public Server(Long id,String ip, String name, String status) {
+        this.id = id;
         this.ip = ip;
         this.name = name;
         this.status = status;

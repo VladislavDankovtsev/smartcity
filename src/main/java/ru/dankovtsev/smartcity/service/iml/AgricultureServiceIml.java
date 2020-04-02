@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.dankovtsev.smartcity.model.Agriculture;
+import ru.dankovtsev.smartcity.model.CheckConnection;
 import ru.dankovtsev.smartcity.other.UrlSmartCityModule;
 import ru.dankovtsev.smartcity.service.AgricultureService;
 
@@ -25,4 +26,5 @@ public class AgricultureServiceIml implements AgricultureService {
 
         return responseEntity.getBody();
     }
+
 }

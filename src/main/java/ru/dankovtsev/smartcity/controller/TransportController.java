@@ -26,7 +26,7 @@ public class TransportController {
     }
 
     @RequestMapping(path = "/transport/online", method = RequestMethod.GET)
-    public Transport getTransportOnline(){
+    public Transport getTransportOnline() throws Exception {
         return transportServiceIml.online();
     }
 }
