@@ -18,6 +18,12 @@ public class Transport {
     private LocalDateTime time;
     @Column(name="status")
     private String status;
+    @Column(name="x")
+    private Double x;
+    @Column(name="y")
+    private Double y;
+    @Column(name="typecargo")
+    private String typeCargo;
 
     public Transport() {
     }
@@ -46,12 +52,39 @@ public class Transport {
         this.status = status;
     }
 
+    public Double getX() {
+        return x;
+    }
+
+    public void setX(Double x) {
+        this.x = x;
+    }
+
+    public Double getY() {
+        return y;
+    }
+
+    public void setY(Double y) {
+        this.y = y;
+    }
+
+    public String getTypeCargo() {
+        return typeCargo;
+    }
+
+    public void setTypeCargo(String typeCargo) {
+        this.typeCargo = typeCargo;
+    }
+
     @Override
     public String toString() {
         return "Transport{" +
                 "id=" + id +
                 ", time=" + time +
                 ", status='" + status + '\'' +
+                ", x=" + x +
+                ", y=" + y +
+                ", typeCargo='" + typeCargo + '\'' +
                 '}';
     }
 }
