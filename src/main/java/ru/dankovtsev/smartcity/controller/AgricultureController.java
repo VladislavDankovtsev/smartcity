@@ -13,7 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
-@RequestMapping("/smartcity/agricalture")
+@RequestMapping("/smartcity/agriculture")
 public class AgricultureController {
 
     @Autowired
