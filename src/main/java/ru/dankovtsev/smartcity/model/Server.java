@@ -1,7 +1,5 @@
 package ru.dankovtsev.smartcity.model;
 
-
-
 import javax.persistence.*;
 
 @Entity

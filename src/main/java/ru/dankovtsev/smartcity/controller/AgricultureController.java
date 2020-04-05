@@ -1,44 +1,43 @@
 package ru.dankovtsev.smartcity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dankovtsev.smartcity.model.Agriculture;
-import ru.dankovtsev.smartcity.repository.AgriculureRepository;
-import ru.dankovtsev.smartcity.service.AgricultureService;
 import ru.dankovtsev.smartcity.service.iml.AgricultureServiceIml;
 
-
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @RestController
-@RequestMapping("/smartcity")
+@RequestMapping("/smartcity/agricalture")
 public class AgricultureController {
-    @Autowired
-    private AgriculureRepository agriculureRepository;
 
     @Autowired
     private AgricultureServiceIml agricultureServiceIml;
 
-    @RequestMapping(path = "/agricalture", method = RequestMethod.GET)
+    @RequestMapping(path = "/", method = RequestMethod.GET)
     public List<Agriculture> getAgricultureList(){
-        List<Agriculture> agricultureList = agriculureRepository.findAll();
+        List<Agriculture> agricultureList = agricultureServiceIml.agricultureFindAll();
         return agricultureList;
     }
 
-    @RequestMapping(path = "/agricalturehistory", method = RequestMethod.GET)
-    public List<Agriculture> getAgricultureListHistory(@RequestParam(name="dateFrom") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dateFrom,
-                                                @RequestParam(name="dateTo") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate dateTo){
-
-        List<Agriculture> agricultureList = agriculureRepository.findAll();
+    @RequestMapping(path = "/history", method = RequestMethod.GET)
+    public List<Agriculture> getAgricultureListHistory(
+            @RequestParam(name="dateFrom")String dateFrom,
+            @RequestParam(name="dateTo")String dateTo){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
+        LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
+        System.out.println("agriculture: "+from+"  :  "+to);
+        List<Agriculture> agricultureList = agricultureServiceIml.agriculturePeriod(from,to);
         return agricultureList;
     }
 
-    @RequestMapping(path = "/agriculture/online", method = RequestMethod.GET)
+    @RequestMapping(path = "/online", method = RequestMethod.GET)
     public Agriculture getAgricultureOnline(){
         Agriculture agriculture = agricultureServiceIml.online();
         return agriculture;

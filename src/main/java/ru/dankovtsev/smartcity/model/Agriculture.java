@@ -1,7 +1,6 @@
 package ru.dankovtsev.smartcity.model;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.UUID;
 

@@ -50,7 +50,9 @@ INSERT INTO smart_home VALUES ('00224567-e89b-12d3-a456-426655440000', '2020-01-
 CREATE TABLE production(
                 id UUID NOT NULL PRIMARY KEY,
                 created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
-                status VARCHAR(255) NOT NULL
+                status VARCHAR(255) NOT NULL,
+                manipulator1 INTEGER,
+                manipulator2 INTEGER
             );
 
 INSERT INTO production VALUES ('20114567-e89b-12d3-a456-426655440000', '2020-02-16 02:03:00',' в ожидании');
@@ -97,7 +99,10 @@ CREATE TABLE users(
 CREATE TABLE transport(
                 id UUID NOT NULL PRIMARY KEY,
                 created_timestamp TIMESTAMP(6) NOT NULL DEFAULT NOW(),
-                status VARCHAR(255) NOT NULL
+                status VARCHAR(255) NOT NULL,
+                x real,
+                y real,
+                typecargo VARCHAR(255)
             );
 
 
