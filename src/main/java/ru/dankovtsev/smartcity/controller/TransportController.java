@@ -27,7 +27,10 @@ public class TransportController {
 
     @RequestMapping(path = "/online", method = RequestMethod.GET)
     public Transport getTransportOnline() throws Exception {
-        return transportServiceIml.online();
+        if (transportServiceIml.online()!=null)
+            return transportServiceIml.online();
+        else
+            return null;
     }
 
     @RequestMapping(path = "/history", method = RequestMethod.GET)

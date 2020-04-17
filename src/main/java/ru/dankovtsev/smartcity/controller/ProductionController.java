@@ -27,7 +27,10 @@ public class ProductionController {
 
     @RequestMapping(path = "/online", method = RequestMethod.GET)
     public Production getProductionOnline(){
-        return productionServiceIml.online();
+        if (productionServiceIml.online()!=null)
+            return productionServiceIml.online();
+        else
+            return null;
     }
 
     @RequestMapping(path = "/history", method = RequestMethod.GET)

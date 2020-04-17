@@ -23,10 +23,16 @@ public class ProductionServiceIml implements ProductionService {
     @Override
     public Production online() {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Production> responseEntity = restTemplate.getForEntity(URL_PRODUCTION_ONLINE,
-                Production.class);
-        System.out.println(responseEntity.getBody().toString());
-        return responseEntity.getBody();
+        try {
+            ResponseEntity<Production> responseEntity = restTemplate.getForEntity(URL_PRODUCTION_ONLINE,
+                    Production.class);
+            if (responseEntity!=null)
+                return responseEntity.getBody();
+            else
+                return null;
+        }catch (Exception  e){
+            return null;
+        }
     }
 
     public List<Production> productionsPeriod(LocalDateTime from, LocalDateTime to){

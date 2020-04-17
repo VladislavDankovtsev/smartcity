@@ -22,10 +22,21 @@ public class TransportServiceIml implements TransportService {
     @Override
     public Transport online() {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Transport> responseEntity = restTemplate.getForEntity(URL_TRANSPORT_ONLINE,
-                Transport.class);
-        System.out.println(responseEntity.getBody().toString());
-        return responseEntity.getBody();
+        try {
+            ResponseEntity<Transport> responseEntity = restTemplate.getForEntity(URL_TRANSPORT_ONLINE,
+                    Transport.class);
+            if (responseEntity!=null)
+                return responseEntity.getBody();
+            else
+                return null;
+        }
+        catch (Exception e){
+            return  null;
+        }
+
+        //System.out.println(responseEntity.getBody().toString());
+
+
     }
 
     public List<Transport> transportPeriod(LocalDateTime from, LocalDateTime to){
