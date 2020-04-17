@@ -23,11 +23,16 @@ public class SmartHomeServiceIml implements SmartHomeService {
     @Override
     public SmartHome online() {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<SmartHome> responseEntity = restTemplate.getForEntity(URL_SMART_HOME_ONLINE,
-                SmartHome.class);
-        System.out.println(responseEntity.getBody().toString());
+        try {
+            ResponseEntity<SmartHome> responseEntity = restTemplate.getForEntity(URL_SMART_HOME_ONLINE,
+                    SmartHome.class);
+            if(responseEntity.getBody()!=null)
+                return responseEntity.getBody();
+            else return null;
+        }catch (Exception e){
+            return null;
+        }
 
-        return responseEntity.getBody();
     }
 
     public List<SmartHome> smartHomePeriod(LocalDateTime from, LocalDateTime to){

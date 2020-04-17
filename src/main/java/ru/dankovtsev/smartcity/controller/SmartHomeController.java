@@ -24,9 +24,9 @@ public class SmartHomeController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public List<SmartHome> getAgricultureListHistory(){
-
-        List<SmartHome> smartHomeList = smartHomeServiceIml.smartHomeFindAll();
-        return smartHomeList;
+        if(smartHomeServiceIml.smartHomeFindAll()!=null)
+         return smartHomeServiceIml.smartHomeFindAll();
+        else return null;
     }
     @RequestMapping(path = "/online", method = RequestMethod.GET)
     public SmartHome getSmartHomeOnline(){

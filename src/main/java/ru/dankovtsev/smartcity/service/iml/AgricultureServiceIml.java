@@ -28,11 +28,15 @@ public class AgricultureServiceIml implements AgricultureService {
     public Agriculture online() {
         //HttpEntity<Agriculture> entity = new HttpEntity<Agriculture>();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Agriculture> responseEntity = restTemplate.getForEntity(URL_AGRICULTURE_ONLINE,
-                Agriculture.class);
-        System.out.println(responseEntity.getBody().toString());
-
-        return responseEntity.getBody();
+        try {
+            ResponseEntity<Agriculture> responseEntity = restTemplate.getForEntity(URL_AGRICULTURE_ONLINE,
+                    Agriculture.class);
+            if (responseEntity.getBody()!=null)
+                return responseEntity.getBody();
+            else return null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     public List<Agriculture> agriculturePeriod(LocalDateTime from, LocalDateTime to){

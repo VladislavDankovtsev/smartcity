@@ -39,8 +39,10 @@ public class AgricultureController {
 
     @RequestMapping(path = "/online", method = RequestMethod.GET)
     public Agriculture getAgricultureOnline(){
-        Agriculture agriculture = agricultureServiceIml.online();
-        return agriculture;
+        if(agricultureServiceIml.online()!=null)
+            return agricultureServiceIml.online();
+        else
+            return null;
     }
 
 }
