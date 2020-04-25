@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dankovtsev.smartcity.model.Production;
+import ru.dankovtsev.smartcity.model.ProductionAvg;
 import ru.dankovtsev.smartcity.service.iml.ProductionServiceIml;
 
 import java.time.LocalDateTime;
@@ -44,5 +45,18 @@ public class ProductionController {
         List<Production> productionList = productionServiceIml.productionsPeriod(from,to);
         return productionList;
     }
+
+    @RequestMapping(path = "/history/avg", method = RequestMethod.GET)
+    public ProductionAvg getAgricultureAvg(
+            @RequestParam(name="dateFrom")String dateFrom,
+            @RequestParam(name="dateTo")String dateTo){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
+        LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
+        System.out.println("production: "+from+"  :  "+to);
+        return productionServiceIml.productionAvg(from,to);
+    }
+
+
 
 }

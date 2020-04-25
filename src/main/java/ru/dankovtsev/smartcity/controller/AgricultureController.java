@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dankovtsev.smartcity.model.Agriculture;
+import ru.dankovtsev.smartcity.model.AgricultureAvg;
 import ru.dankovtsev.smartcity.service.iml.AgricultureServiceIml;
 
 import java.time.LocalDateTime;
@@ -43,6 +44,17 @@ public class AgricultureController {
             return agricultureServiceIml.online();
         else
             return null;
+    }
+
+    @RequestMapping(path = "/history/avg", method = RequestMethod.GET)
+    public AgricultureAvg getAgricultureHistoryAvg(
+            @RequestParam(name="dateFrom")String dateFrom,
+            @RequestParam(name="dateTo")String dateTo){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
+        LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
+        System.out.println("agriculture: "+from+"  :  "+to);
+        return agricultureServiceIml.agricultureHistoryAvg(from,to);
     }
 
 }

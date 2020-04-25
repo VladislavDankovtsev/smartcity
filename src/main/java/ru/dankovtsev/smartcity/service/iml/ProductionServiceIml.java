@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import ru.dankovtsev.smartcity.model.Agriculture;
 import ru.dankovtsev.smartcity.model.Production;
+import ru.dankovtsev.smartcity.model.ProductionAvg;
 import ru.dankovtsev.smartcity.repository.ProductionRepository;
 import ru.dankovtsev.smartcity.service.ProductionService;
 
@@ -41,5 +42,16 @@ public class ProductionServiceIml implements ProductionService {
 
     public List<Production> productionFindAll(){
         return productionRepository.findAll();
+    }
+
+    public ProductionAvg productionAvg(LocalDateTime from, LocalDateTime to){
+        long count=0;
+        List<Production> productionList = productionRepository.getProductionForDate(from,to);
+        for (Production production : productionList) {
+            if((production.getManipulator1()==5)&&(production.getManipulator2()==1)) count++;
+        }
+        ProductionAvg productionAvg = new ProductionAvg();
+        productionAvg.setCount(count);
+        return productionAvg;
     }
 }
