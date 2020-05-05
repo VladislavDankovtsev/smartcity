@@ -4,20 +4,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SmartHomeAvg {
-    double avgTempInCC;
-    double avgTempOutCC;
-    long firstE;
-    long secondE;
-    long statusL;
-    long countPersonS;
-    long countSuccessPersonS;
+    private double avgTempInCC;
+    private double avgTempOutCC;
+    private long firstE;
+    private long secondE;
+    private long statusL;
+    private long countPersonS;
+    private long countSuccessPersonS;
+    private long countlist;
+
 
     public SmartHomeAvg() {
     }
 
     public SmartHomeAvg(double avgTempInCC,
                         double avgTempOutCC, long firstE, long secondE,
-                        long statusL, long countPersonS, long countSuccessPersonS) {
+                        long statusL, long countPersonS, long countSuccessPersonS,long countlist) {
         this.avgTempInCC = avgTempInCC;
         this.avgTempOutCC = avgTempOutCC;
         this.firstE = firstE;
@@ -25,6 +27,15 @@ public class SmartHomeAvg {
         this.statusL = statusL;
         this.countPersonS = countPersonS;
         this.countSuccessPersonS = countSuccessPersonS;
+        this.countlist = countlist;
+    }
+
+    public long getCountlist() {
+        return countlist;
+    }
+
+    public void setCountlist(long countlist) {
+        this.countlist = countlist;
     }
 
     public double getAvgTempInCC() {

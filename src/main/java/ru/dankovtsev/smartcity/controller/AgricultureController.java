@@ -30,7 +30,7 @@ public class AgricultureController {
     public List<Agriculture> getAgricultureListHistory(
             @RequestParam(name="dateFrom")String dateFrom,
             @RequestParam(name="dateTo")String dateTo){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
         LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
         LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
         System.out.println("agriculture: "+from+"  :  "+to);
@@ -50,7 +50,7 @@ public class AgricultureController {
     public AgricultureAvg getAgricultureHistoryAvg(
             @RequestParam(name="dateFrom")String dateFrom,
             @RequestParam(name="dateTo")String dateTo){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
         LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
         LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
         System.out.println("agriculture: "+from+"  :  "+to);

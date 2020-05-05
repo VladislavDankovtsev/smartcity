@@ -77,10 +77,7 @@ public class TransportServiceIml implements TransportService {
                 default: gOther++;break;
             }
         }
-        TransportAvg transportAvg = new TransportAvg(g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,gOther);
+        TransportAvg transportAvg = new TransportAvg(g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,gOther, transportList.size());
         return transportAvg;
     }
-
-
-
 }

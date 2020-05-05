@@ -91,6 +91,7 @@ public class AgricultureServiceIml implements AgricultureService {
         agricultureAvg.setCountFanTH(countFanTemperatureAndHumidity);
         agricultureAvg.setCountWaterSM(countWaterSoilMoisture);
         agricultureAvg.setCountHeatingElementTH(countHeatingElementTemperatureAndHumidity);
+        agricultureAvg.setCountlist(agricultureList.size());
         return agricultureAvg;
     }
 

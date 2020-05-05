@@ -10,8 +10,17 @@ public class AgricultureAvg {
     private int countWaterSM;
     private int countFanTH;
     private int countHeatingElementTH;
+    private long countlist;
 
     public AgricultureAvg() {
+    }
+
+    public long getCountlist() {
+        return countlist;
+    }
+
+    public void setCountlist(long countlist) {
+        this.countlist = countlist;
     }
 
     public double getAvgHumiditySM() {

@@ -75,7 +75,8 @@ public class SmartHomeServiceIml implements SmartHomeService {
         }
         if (iti!=0) avgTempInCC= sumTempInCC/iti;
         if (ito!=0) avgTempOutCC = sumTempOutCC/ito;
-        SmartHomeAvg smartHomeAvg = new SmartHomeAvg(avgTempInCC,avgTempOutCC,firstE,secondE,statusL,countPersonS,countSuccessPerson);
+        SmartHomeAvg smartHomeAvg = new SmartHomeAvg(avgTempInCC,avgTempOutCC,firstE,secondE,statusL,countPersonS,
+                countSuccessPerson, smartHomes.size());
         return smartHomeAvg;
     }
 }

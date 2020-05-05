@@ -52,6 +52,7 @@ public class ProductionServiceIml implements ProductionService {
         }
         ProductionAvg productionAvg = new ProductionAvg();
         productionAvg.setCount(count);
+        productionAvg.setCountlist(productionList.size());
         return productionAvg;
     }
 }

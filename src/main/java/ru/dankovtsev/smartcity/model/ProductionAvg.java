@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProductionAvg {
     private long count;
+    private long countlist;
 
     public ProductionAvg() {
     }
@@ -15,5 +16,13 @@ public class ProductionAvg {
 
     public void setCount(long count) {
         this.count = count;
+    }
+
+    public long getCountlist() {
+        return countlist;
+    }
+
+    public void setCountlist(long countlist) {
+        this.countlist = countlist;
     }
 }

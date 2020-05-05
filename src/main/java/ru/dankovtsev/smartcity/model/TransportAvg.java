@@ -15,11 +15,12 @@ public class TransportAvg {
     private int g9;
     private int g10;
     private int gOther;
+    private long countlist;
 
     public TransportAvg() {
     }
 
-    public TransportAvg(int g1, int g2, int g3, int g4, int g5, int g6, int g7, int g8, int g9, int g10, int gOther) {
+    public TransportAvg(int g1, int g2, int g3, int g4, int g5, int g6, int g7, int g8, int g9, int g10, int gOther, long countlist) {
         this.g1 = g1;
         this.g2 = g2;
         this.g3 = g3;
@@ -31,6 +32,15 @@ public class TransportAvg {
         this.g9 = g9;
         this.g10 = g10;
         this.gOther = gOther;
+        this.countlist = countlist;
+    }
+
+    public long getCountlist() {
+        return countlist;
+    }
+
+    public void setCountlist(long countlist) {
+        this.countlist = countlist;
     }
 
     public int getgOther() {
