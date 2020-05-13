@@ -11,8 +11,10 @@ import ru.dankovtsev.smartcity.other.UrlSmartCityModule;
 import ru.dankovtsev.smartcity.repository.AgriculureRepository;
 import ru.dankovtsev.smartcity.service.AgricultureService;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static ru.dankovtsev.smartcity.other.UrlSmartCityModule.*;
@@ -38,8 +40,18 @@ public class AgricultureServiceIml implements AgricultureService {
         }
     }
 
-    public List<Agriculture> agriculturePeriod(LocalDateTime from, LocalDateTime to){
-        return agriculureRepository.getAgrigultureForDate(from,to);
+    public List<AgricultureArray> agriculturePeriod(LocalDateTime from, LocalDateTime to){
+        List<Agriculture> agricultureList = agriculureRepository.getAgrigultureForDate(from,to);
+        List<AgricultureArray> agricultureArrays = new ArrayList<>();
+        for (Agriculture agriculture : agricultureList) {
+            AgricultureArray agricultureArray = new AgricultureArray();
+            agricultureArray.setTime(agriculture.getTime());
+            agricultureArray.setHumiditySM((int) Double.parseDouble(agriculture.getSoilMoisture().getHumidity()));
+            agricultureArray.setHumidityTaH((int) Double.parseDouble(agriculture.getTemperatureAndHumidity().getHumidity()));
+            agricultureArray.setTemperature(Double.parseDouble(agriculture.getTemperatureAndHumidity().getTemperature()));
+            agricultureArrays.add(agricultureArray);
+        }
+        return agricultureArrays;
     }
 
     public List<Agriculture> agricultureFindAll(){
@@ -85,8 +97,12 @@ public class AgricultureServiceIml implements AgricultureService {
         if (ihth!=0) avgHumidityTemperatureAndHumidity = sumAvgHumidityTemperatureAndHumidity/ihth;
         if (itth!=0) avgTemperatureTemperatureAndHumidity = sumAvgTemperatureTemperatureAndHumidity/itth;
         AgricultureAvg agricultureAvg = new AgricultureAvg();
+        DecimalFormat df = new DecimalFormat("#,##");
+        avgHumiditySoilMoisture = Double.parseDouble(df.format(avgHumiditySoilMoisture));
         agricultureAvg.setAvgHumiditySM(avgHumiditySoilMoisture);
+        avgHumidityTemperatureAndHumidity = Double.parseDouble(df.format(avgHumidityTemperatureAndHumidity));
         agricultureAvg.setAvgHumidityTH(avgHumidityTemperatureAndHumidity);
+        avgTemperatureTemperatureAndHumidity = Double.parseDouble(df.format(avgTemperatureTemperatureAndHumidity));
         agricultureAvg.setAvgTemperatureTH(avgTemperatureTemperatureAndHumidity);
         agricultureAvg.setCountFanTH(countFanTemperatureAndHumidity);
         agricultureAvg.setCountWaterSM(countWaterSoilMoisture);

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dankovtsev.smartcity.model.Agriculture;
+import ru.dankovtsev.smartcity.model.AgricultureArray;
 import ru.dankovtsev.smartcity.model.AgricultureAvg;
 import ru.dankovtsev.smartcity.service.iml.AgricultureServiceIml;
 
@@ -27,14 +28,14 @@ public class AgricultureController {
     }
 
     @RequestMapping(path = "/history", method = RequestMethod.GET)
-    public List<Agriculture> getAgricultureListHistory(
+    public List<AgricultureArray> getAgricultureListHistory(
             @RequestParam(name="dateFrom")String dateFrom,
             @RequestParam(name="dateTo")String dateTo){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
         LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
         LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
         System.out.println("agriculture: "+from+"  :  "+to);
-        List<Agriculture> agricultureList = agricultureServiceIml.agriculturePeriod(from,to);
+        List<AgricultureArray> agricultureList = agricultureServiceIml.agriculturePeriod(from,to);
         return agricultureList;
     }
 

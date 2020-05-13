@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.dankovtsev.smartcity.model.SmartHome;
+import ru.dankovtsev.smartcity.model.SmartHomeArray;
 import ru.dankovtsev.smartcity.model.SmartHomeAvg;
 import ru.dankovtsev.smartcity.repository.SmartHomeRepository;
 import ru.dankovtsev.smartcity.service.iml.SmartHomeServiceIml;
@@ -36,14 +37,14 @@ public class SmartHomeController {
     }
 
     @RequestMapping(path = "/history", method = RequestMethod.GET)
-    public List<SmartHome> getAgricultureListHistory(
+    public List<SmartHomeArray> getAgricultureListHistory(
             @RequestParam(name="dateFrom")String dateFrom,
             @RequestParam(name="dateTo")String dateTo){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
         LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
         LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
         System.out.println("production: "+from+"  :  "+to);
-        List<SmartHome> smartHomeList = smartHomeServiceIml.smartHomePeriod(from,to);
+        List<SmartHomeArray> smartHomeList = smartHomeServiceIml.smartHomePeriod(from,to);
         return smartHomeList;
     }
 
