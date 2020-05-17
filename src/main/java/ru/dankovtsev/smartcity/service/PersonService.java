@@ -4,5 +4,5 @@ import org.springframework.stereotype.Service;
 import ru.dankovtsev.smartcity.service.base.CrudService;
 
 @Service
-public interface UserService extends CrudService {
+public interface PersonService extends CrudService {
 }

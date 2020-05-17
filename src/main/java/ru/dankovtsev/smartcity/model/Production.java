@@ -19,8 +19,10 @@ public class Production {
     private Integer manipulator1;
     @Column(name="manipulator2")
     private Integer manipulator2;
-    @Column(name="status")
-    private String status;
+    @Column(name="status1")
+    private String status1;
+    @Column(name="status2")
+    private String status2;
 
     public Production() {
     }
@@ -41,12 +43,20 @@ public class Production {
         this.time = time;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatus1() {
+        return status1;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus1(String status1) {
+        this.status1 = status1;
+    }
+
+    public String getStatus2() {
+        return status2;
+    }
+
+    public void setStatus2(String status2) {
+        this.status2 = status2;
     }
 
     public Integer getManipulator1() {
@@ -72,7 +82,8 @@ public class Production {
                 ", time=" + time +
                 ", manipulator1=" + manipulator1 +
                 ", manipulator2=" + manipulator2 +
-                ", status='" + status + '\'' +
+                ", status1='" + status1 + '\'' +
+                ", status2='" + status2 + '\'' +
                 '}';
     }
 }

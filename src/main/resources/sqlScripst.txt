@@ -105,5 +105,11 @@ CREATE TABLE transport(
                 typecargo VARCHAR(255)
             );
 
+INSERT INTO person VALUES ('20114567-e89b-12d3-a456-426655440000', 'Данковцев Владислав Игоревич','vlad.dankovtsev@mail.ru');
+INSERT INTO person VALUES ('20114567-e89b-12d3-a456-426655440001', 'Безумнов Данил Николаевич','example@mail.ru');
+INSERT INTO person VALUES ('20114567-e89b-12d3-a456-426655440002', 'Сичкар Дмитрий Павлович','example1@mail.ru');
+INSERT INTO person VALUES ('20114567-e89b-12d3-a456-426655440003', 'Катков Михаил Михайлович','examplе3@mail.ru');
+
+
 
 

@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.dankovtsev.smartcity.model.SmartHome;
-import ru.dankovtsev.smartcity.model.SmartHomeArray;
-import ru.dankovtsev.smartcity.model.SmartHomeAvg;
+import ru.dankovtsev.smartcity.model.*;
 import ru.dankovtsev.smartcity.repository.SmartHomeRepository;
 import ru.dankovtsev.smartcity.service.iml.SmartHomeServiceIml;
 
@@ -59,4 +57,25 @@ public class SmartHomeController {
         return smartHomeServiceIml.smartHomeAvg(from,to);
     }
 
+    @RequestMapping(path = "/history/security", method = RequestMethod.GET)
+    public List<PersonList> getPersonList(
+            @RequestParam(name="dateFrom")String dateFrom,
+            @RequestParam(name="dateTo")String dateTo){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
+        LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
+        System.out.println("security: "+from+"  :  "+to);
+        return smartHomeServiceIml.smartHomePersonList(from,to);
+    }
+
+    @RequestMapping(path = "/history/security/all", method = RequestMethod.GET)
+    public List<PersonAll> getPersonListAll(
+            @RequestParam(name="dateFrom")String dateFrom,
+            @RequestParam(name="dateTo")String dateTo){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS");
+        LocalDateTime from = LocalDateTime.parse(dateFrom, formatter);
+        LocalDateTime to = LocalDateTime.parse(dateTo, formatter);
+        System.out.println("security: "+from+"  :  "+to);
+        return smartHomeServiceIml.smartHomePersonListAll(from,to);
+    }
 }

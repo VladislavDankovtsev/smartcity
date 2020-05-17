@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name="soil_moisture")
+@Table(name="agriculture_soil_moisture")
 public class SoilMoisture {
     @Id
     @Column(name = "id")

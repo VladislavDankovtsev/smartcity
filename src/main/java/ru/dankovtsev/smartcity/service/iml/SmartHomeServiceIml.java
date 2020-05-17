@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.dankovtsev.smartcity.model.Production;
-import ru.dankovtsev.smartcity.model.SmartHome;
-import ru.dankovtsev.smartcity.model.SmartHomeArray;
-import ru.dankovtsev.smartcity.model.SmartHomeAvg;
+import ru.dankovtsev.smartcity.model.*;
+import ru.dankovtsev.smartcity.repository.PersonRepository;
 import ru.dankovtsev.smartcity.repository.SmartHomeRepository;
+import ru.dankovtsev.smartcity.repository.SmartHomeSecurityRepository;
 import ru.dankovtsev.smartcity.service.SmartHomeService;
 
 import java.text.DecimalFormat;
@@ -23,6 +22,10 @@ public class SmartHomeServiceIml implements SmartHomeService {
 
     @Autowired
     private SmartHomeRepository smartHomeRepository;
+    @Autowired
+    private SmartHomeSecurityRepository smartHomeSecurityRepository;
+    @Autowired
+    private PersonRepository personRepository;
 
     @Override
     public SmartHome online() {
@@ -82,7 +85,7 @@ public class SmartHomeServiceIml implements SmartHomeService {
                 firstE++;
             else secondE++;
             if (smartHome.getLighting().getSystem_status().equals("on")) statusL++;
-            if (!smartHome.getSecurity().getId_personal().equals("unknown")) countPersonS++;
+            if (smartHome.getSecurity().getId_personal()!=null) countPersonS++;
             if (smartHome.getSecurity().getDoor_status().equals("on")) countSuccessPerson++;
         }
         if (iti!=0) avgTempInCC= sumTempInCC/iti;
@@ -93,5 +96,54 @@ public class SmartHomeServiceIml implements SmartHomeService {
         SmartHomeAvg smartHomeAvg = new SmartHomeAvg(avgTempInCC,avgTempOutCC,firstE,secondE,statusL,countPersonS,
                 countSuccessPerson, smartHomes.size());
         return smartHomeAvg;
+    }
+
+    public List<PersonList> smartHomePersonList(LocalDateTime from, LocalDateTime to) {
+        List<SmartHomeSecurity> smartHomeSecurity = smartHomeSecurityRepository.getSmartHomeSecurityForDate(from, to);
+        List<PersonList> personLists = new ArrayList<>();
+        boolean flag = true;
+        for (SmartHomeSecurity security : smartHomeSecurity) {
+            if((security.getId_personal()!=null) && (security.getDoor_status().equals("on"))){
+                flag=true;
+                for (PersonList person : personLists) {
+                    if(person.getId().equals(security.getId_personal())){
+                        person.setCount(person.getCount()+1);
+                        if(security.getTime().isAfter(person.getTimeLast()))
+                            person.setTimeLast(security.getTime());
+                        flag=false;
+                    }
+                }
+                if(flag){
+                    PersonList pl = new PersonList();
+                    pl.setId(security.getId_personal());
+                    pl.setCount(1l);
+                    Person person = personRepository.getOne(security.getId_personal());
+                    pl.setName(person.getEmail());
+                    pl.setTimeLast(security.getTime());
+                    personLists.add(pl);
+                }
+            }
+        }
+        return personLists;
+    }
+
+    public List<PersonAll> smartHomePersonListAll(LocalDateTime from, LocalDateTime to) {
+        List<SmartHomeSecurity> smartHomeSecurity = smartHomeSecurityRepository.getSmartHomeSecurityForDate(from, to);
+        List<PersonAll> personLists = new ArrayList<>();
+        boolean flag = true;
+        for (SmartHomeSecurity security : smartHomeSecurity) {
+            if((security.getId_personal()!=null)){
+                if(flag){
+                    PersonAll pa = new PersonAll();
+                    pa.setId(security.getId_personal());
+                    Person person = personRepository.getOne(security.getId_personal());
+                    pa.setName(person.getName());
+                    pa.setTime(security.getTime());
+                    pa.setStatus(security.getDoor_status());
+                    personLists.add(pa);
+                }
+            }
+        }
+        return personLists;
     }
 }

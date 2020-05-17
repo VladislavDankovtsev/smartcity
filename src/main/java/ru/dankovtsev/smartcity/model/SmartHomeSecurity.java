@@ -16,7 +16,7 @@ public class SmartHomeSecurity {
     @Column(name="created_timestamp", insertable = true, updatable = false)
     private LocalDateTime time;
     @Column(name="id_personal")
-    private String id_personal;
+    private UUID id_personal;
     @Column(name="door_status")
     private String door_status;
 
@@ -39,11 +39,11 @@ public class SmartHomeSecurity {
         this.time = time;
     }
 
-    public String getId_personal() {
+    public UUID getId_personal() {
         return id_personal;
     }
 
-    public void setId_personal(String id_personal) {
+    public void setId_personal(UUID id_personal) {
         this.id_personal = id_personal;
     }
 
