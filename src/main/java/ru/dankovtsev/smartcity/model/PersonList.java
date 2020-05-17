@@ -8,6 +8,7 @@ public class PersonList {
     private String name;
     private Long count;
     private LocalDateTime timeLast;
+    private String timeLastStr;
 
     public PersonList() {
     }
@@ -42,5 +43,13 @@ public class PersonList {
 
     public void setTimeLast(LocalDateTime timeLast) {
         this.timeLast = timeLast;
+    }
+
+    public String getTimeLastStr() {
+        return timeLastStr;
+    }
+
+    public void setTimeLastStr(String timeLastStr) {
+        this.timeLastStr = timeLastStr;
     }
 }

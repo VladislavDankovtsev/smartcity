@@ -8,6 +8,7 @@ public class PersonAll {
     private String name;
     private LocalDateTime time;
     private String status;
+    private String timeLastStr;
 
     public PersonAll() {
     }
@@ -42,5 +43,13 @@ public class PersonAll {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getTimeLastStr() {
+        return timeLastStr;
+    }
+
+    public void setTimeLastStr(String timeLastStr) {
+        this.timeLastStr = timeLastStr;
     }
 }

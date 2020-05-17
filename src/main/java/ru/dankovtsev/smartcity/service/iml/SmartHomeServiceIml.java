@@ -109,7 +109,22 @@ public class SmartHomeServiceIml implements SmartHomeService {
                     if(person.getId().equals(security.getId_personal())){
                         person.setCount(person.getCount()+1);
                         if(security.getTime().isAfter(person.getTimeLast()))
+                        {
                             person.setTimeLast(security.getTime());
+                            if(security.getTime().getSecond()>10) {
+                                String strTime = "" + security.getTime().getYear() + "-" + security.getTime().getMonth() + "-"
+                                        + security.getTime().getDayOfMonth() + " " + security.getTime().getHour() + ":" +
+                                        security.getTime().getMinute() + ":" + security.getTime().getSecond();
+                                person.setTimeLastStr(strTime);
+                            }
+                            else {
+                                String strTime = "" + security.getTime().getYear() + "-" + security.getTime().getMonth() + "-"
+                                        + security.getTime().getDayOfMonth() + " " + security.getTime().getHour() + ":" +
+                                        security.getTime().getMinute() + ":0" + security.getTime().getSecond();
+                                person.setTimeLastStr(strTime);
+                            }
+                        }
+
                         flag=false;
                     }
                 }
@@ -119,6 +134,18 @@ public class SmartHomeServiceIml implements SmartHomeService {
                     pl.setCount(1l);
                     Person person = personRepository.getOne(security.getId_personal());
                     pl.setName(person.getEmail());
+                    if(security.getTime().getSecond()>10) {
+                        String strTime = "" + security.getTime().getYear() + "-" + security.getTime().getMonth() + "-"
+                                + security.getTime().getDayOfMonth() + " " + security.getTime().getHour() + ":" +
+                                security.getTime().getMinute() + ":" + security.getTime().getSecond();
+                        pl.setTimeLastStr(strTime);
+                    }
+                    else {
+                        String strTime = "" + security.getTime().getYear() + "-" + security.getTime().getMonth() + "-"
+                                + security.getTime().getDayOfMonth() + " " + security.getTime().getHour() + ":" +
+                                security.getTime().getMinute() + ":0" + security.getTime().getSecond();
+                        pl.setTimeLastStr(strTime);
+                    }
                     pl.setTimeLast(security.getTime());
                     personLists.add(pl);
                 }
@@ -138,6 +165,18 @@ public class SmartHomeServiceIml implements SmartHomeService {
                     pa.setId(security.getId_personal());
                     Person person = personRepository.getOne(security.getId_personal());
                     pa.setName(person.getName());
+                    if(security.getTime().getSecond()>10) {
+                        String strTime = "" + security.getTime().getYear() + "-" + security.getTime().getMonth() + "-"
+                                + security.getTime().getDayOfMonth() + " " + security.getTime().getHour() + ":" +
+                                security.getTime().getMinute() + ":" + security.getTime().getSecond();
+                        pa.setTimeLastStr(strTime);
+                    }
+                    else {
+                        String strTime = "" + security.getTime().getYear() + "-" + security.getTime().getMonth() + "-"
+                                + security.getTime().getDayOfMonth() + " " + security.getTime().getHour() + ":" +
+                                security.getTime().getMinute() + ":0" + security.getTime().getSecond();
+                        pa.setTimeLastStr(strTime);
+                    }
                     pa.setTime(security.getTime());
                     pa.setStatus(security.getDoor_status());
                     personLists.add(pa);
