@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.dankovtsev.smartcity.model.Agriculture;
 import ru.dankovtsev.smartcity.model.Production;
 import ru.dankovtsev.smartcity.model.ProductionAvg;
 import ru.dankovtsev.smartcity.repository.ProductionRepository;

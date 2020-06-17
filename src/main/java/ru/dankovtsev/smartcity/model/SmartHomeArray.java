@@ -1,6 +1,6 @@
 package ru.dankovtsev.smartcity.model;
 
-import javax.persistence.Column;
+
 import java.time.LocalDateTime;
 
 public class SmartHomeArray {

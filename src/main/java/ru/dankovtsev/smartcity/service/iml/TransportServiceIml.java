@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import ru.dankovtsev.smartcity.model.SmartHome;
 import ru.dankovtsev.smartcity.model.Transport;
 import ru.dankovtsev.smartcity.model.TransportAvg;
 import ru.dankovtsev.smartcity.repository.TransportRepository;
 import ru.dankovtsev.smartcity.service.TransportService;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,8 +26,17 @@ public class TransportServiceIml implements TransportService {
         try {
             ResponseEntity<Transport> responseEntity = restTemplate.getForEntity(URL_TRANSPORT_ONLINE,
                     Transport.class);
-            if (responseEntity!=null)
-                return responseEntity.getBody();
+            if (responseEntity!=null) {
+                DecimalFormat df = new DecimalFormat("#,##");
+                Transport transport = new Transport();
+                transport.setId(responseEntity.getBody().getId());
+                transport.setTime(responseEntity.getBody().getTime());
+                transport.setStatus(responseEntity.getBody().getStatus());
+                transport.setTypeCargo(responseEntity.getBody().getTypeCargo());
+                transport.setX(Double.parseDouble(df.format(responseEntity.getBody().getX())));
+                transport.setY(Double.parseDouble(df.format(responseEntity.getBody().getY())));
+                return transport;
+            }
             else
                 return null;
         }
